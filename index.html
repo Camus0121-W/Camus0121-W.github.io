@@ -5,21 +5,149 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Camus Wang - 个人主页</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; }
-        .container { max-width: 800px; margin: auto; }
-        h1 { color: #333; }
-        a { color: #0073e6; text-decoration: none; }
+        /* 页面整体样式 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        /* 个人信息区 */
+        .profile {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .profile img {
+            /* 头像圆形裁剪，可自行调整大小 */
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+        .profile-info {
+            line-height: 1.4;
+        }
+        .profile-info h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            color: #333;
+        }
+        .profile-info p {
+            margin: 5px 0;
+            color: #555;
+        }
+
+        /* 小标题（如“项目”、“论文”等） */
+        .section {
+            margin-top: 30px;
+        }
+        .section h2 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
+        }
+
+        /* 链接样式 */
+        a {
+            color: #0073e6;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* 列表样式 */
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Camus Wang</h1>
-        <p><strong>职位：</strong> 学生 / 研究员</p>
-        <p><strong>邮箱：</strong> <a href="mailto:your-email@example.com">your-email@example.com</a></p>
-        <p><strong>研究兴趣：</strong> 物理、数学、机器学习等</p>
-        <p><strong>个人简历：</strong> <a href="cv.pdf">下载 PDF</a></p>
-        <p><strong>Google Scholar：</strong> <a href="https://scholar.google.com">点击查看</a></p>
-        <p><strong>GitHub：</strong> <a href="https://github.com/Camus0121-W">我的 GitHub</a></p>
+
+<div class="container">
+
+    <!-- 个人信息 -->
+    <div class="profile">
+        <!-- 替换成你的头像文件名或在线图片链接 -->
+        <img src="your-photo.jpg" alt="个人头像">
+        <div class="profile-info">
+            <h1>Camus Wang</h1>
+            <p><strong>代称：</strong> 你的昵称</p>
+            <p><strong>职位：</strong> 学生 / 研究员</p>
+            <p><strong>学校：</strong> XXX 大学</p>
+            <p>
+                <strong>个人简历：</strong>
+                <!-- 替换成你的 CV 或 Resume 文件名，比如 cv.pdf -->
+                <a href="cv.pdf" target="_blank">下载 PDF</a>
+            </p>
+        </div>
     </div>
+
+    <!-- 项目展示 -->
+    <div class="section">
+        <h2>我的项目</h2>
+        <ul>
+            <li>
+                <strong>项目名称 1</strong>  
+                <p>项目简介：简单介绍项目的功能或目标。</p>
+                <a href="project1.html" target="_blank">查看详情</a>
+            </li>
+            <li>
+                <strong>项目名称 2</strong>  
+                <p>项目简介：简单介绍项目的功能或目标。</p>
+                <a href="project2.html" target="_blank">查看详情</a>
+            </li>
+            <!-- 你可以继续添加更多项目 -->
+        </ul>
+    </div>
+
+    <!-- 研究论文 PDF 链接 -->
+    <div class="section">
+        <h2>研究论文</h2>
+        <ul>
+            <li>
+                <strong>论文标题 1</strong>  
+                <a href="paper1.pdf" target="_blank">查看 PDF</a>
+            </li>
+            <li>
+                <strong>论文标题 2</strong>  
+                <a href="paper2.pdf" target="_blank">查看 PDF</a>
+            </li>
+            <!-- 继续添加更多论文 -->
+        </ul>
+    </div>
+
+    <!-- 实验笔记（HTML链接） -->
+    <div class="section">
+        <h2>实验笔记</h2>
+        <ul>
+            <li>
+                <a href="note1.html" target="_blank">实验笔记 1</a>
+            </li>
+            <li>
+                <a href="note2.html" target="_blank">实验笔记 2</a>
+            </li>
+            <!-- 继续添加更多实验笔记链接 -->
+        </ul>
+    </div>
+
+</div>
+
 </body>
 </html>
+
