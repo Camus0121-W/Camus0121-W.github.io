@@ -1,0 +1,322 @@
+%% Standard start of a latex document
+\documentclass[letterpaper,12pt]{article}
+%% Always use 12pt - it is much easier to read
+%% Things written after '%' sign, are ignored by the latex editor - they are how to introduce comments into your .tex source
+%% Anything mathematics related should be put in between '$' signs.
+
+%% Set some names and numbers here so we can use them below
+\newcommand{\myname}{Camus Wang} %%%%%%%%%%%%%%% ---------> Change this to your name
+\newcommand{\mynumber}{20174009} %%%%%%%%%%%%%%% ---------> Change this to your student number
+\newcommand{\hw}{5} %%%%%%%%%%%%%%% --------->  set this to the homework number
+
+%%%%%%
+%% There is a bit of stuff below which you should not have to change
+%%%%%%
+
+%% AMS mathematics packages - they contain many useful fonts and symbols.
+\usepackage{amsmath, amsfonts, amssymb}
+
+%% The geometry package changes the margins to use more of the page, I suggest
+%% using it because standard latex margins are chosen for articles and letters,
+%% not homework.
+\usepackage[paper=letterpaper,left=25mm,right=25mm,top=3cm,bottom=25mm]{geometry}
+%% For details of how this package work, google the ``latex geometry documentation''.
+
+%%
+%% Fancy headers and footers - make the document look nice
+\usepackage{fancyhdr} %% for details on how this work, search-engine ``fancyhdr documentation''
+\pagestyle{fancy}
+%%
+%% The header
+\lhead{Mathematics 257/316} % course name as top-left
+\chead{Homework \hw} % homework number in top-centre
+\rhead{ \myname \\ \mynumber }
+%% This is a little more complicated because we have used `` \\ '' to force a line-break between the name and number.
+%%
+%% The footer
+\lfoot{\myname} % name on bottom-left
+\cfoot{Page \thepage} % page in middle
+\rfoot{\mynumber} % student number on bottom-right
+%%
+%% These put horizontal lines between the main text and header and footer.
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+%%%
+
+
+% Some useful macros
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumerate}
+
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\NN}{\mathbb{N}}
+\renewcommand\vec{\mathbf}
+
+\newcommand{\st}{\text{ such that } }
+\newcommand{\dee}[1]{\mathrm{d}#1}
+\newcommand{\diff}[2]{ \frac{\dee{#1}}{\dee{#2}} }
+\newcommand{\lt}{<}
+\newcommand{\gt}{>}
+\newcommand{\set}[1]{\left\{#1 \right\}}
+\newcommand{\dig}[1]{\left\langle{#1}\right\rangle}
+\newcommand{\closure}[1]{\overline{#1}}
+\newcommand{\interior}[1]{\mathrm{int}\left(#1\right)}
+\newcommand{\boundary}[1]{\delta\left(#1\right)}
+\newcommand{\ceiling}[1]{\left\lceil #1 \right\rceil}
+
+
+\begin{document}
+% Put your answsers as items in this enumerate environment and they will be automatically numbered
+
+\begin{enumerate}[Q(1)]
+\item 
+We consider the function \( u(x,t) \), which models the temperature distribution in a heat-conductive rod of length \( L \) that is perfectly insulated along its sides. The left end of the rod is also perfectly insulated, meaning no heat escapes or enters at \( x = 0 \). Meanwhile, the right end at \( x = L \) loses thermal energy at a rate proportional to its temperature at that point. The initial temperature distribution along the rod is given by the function \( f(x) \). The problem is stated as follows:
+
+\begin{equation}
+\begin{aligned}
+    u_t &= \alpha^2 u_{xx}, \quad 0 < x < L, \ t > 0 \\
+    u_x(0,t) &= 0, \quad u_x(L,t) + \kappa u(L,t) = 0, \\
+    u(x,0) &= f(x),
+\end{aligned}
+\end{equation}
+
+where \( \kappa > 0 \). Use the method of separation of variables to solve the problem \((1)\).
+\\
+
+\textit{Proof:}
+Assume $u(x,t) = T(t)X(x)$.
+
+Substituting into the heat equation: $u_t = \alpha^2 u_{xx}$:
+
+\[
+    T'(t)X(x) = \alpha^2 T(t) X''(x).
+\]
+
+Dividing both sides by \( T(t)X(x) \):
+
+\[
+    \frac{T'(t)}{\alpha^2 T(t)} = \frac{X''(x)}{X(x)} = \lambda. \tag{2}
+\]
+
+Since the left side depends only on \( t \) and the right side depends only on \( x \), thus both must be equal to a constant \( \lambda \).
+
+\textbf{Solving the Time Equation}
+
+According to equation (2):
+\[
+    \frac{T(t)'}{T(t)} = \alpha^2 \lambda.
+\]
+Solving this equation we can get a general solution: $T(t) = C e^{\alpha^2 \lambda t}$.
+
+\textbf{Solving the Space Equation}
+
+According to equation (2):
+
+\[
+    X''(x) = \lambda X(x).
+\]
+$X(x)=0$ is a trivial solution. We divide the following cases in order to find non-trivial solutions.
+
+\textbf{Case1:} Let $\lambda=\mu^2>0$:
+
+Solving $X''(x)-\mu^2X(x)=0$ we can get a general solution: 
+\[
+X(x)=A\sinh(\mu x)+Bcosh(\mu x), \quad\text{where}\quad X'(x)=A\mu\cosh(\mu x)+B\mu \sinh(\mu x).
+\] Then we apply the boundary conditions:
+
+$u_x(0,t)=0 \to X'(0)T(t)=0 \to X'(0)=0 \to A=0$.
+
+$u_x(L,t)+\kappa u(L,t)=0 \to X'(L)T(t)+\kappa X(L)T(t)=0 \to B\mu \sinh(\mu L)+\kappa B \cosh(\mu L)=0$.
+
+Now consider $B\mu \sinh(\mu L)+\kappa B \cosh(\mu L)=0$, assume $B\neq 0$, we will get $\tanh(\mu L)=-\frac{\kappa}{\mu}.$ When $\mu>0$ the left side always greater than 0, and the right side always less than 0 since $\kappa>0$. When $\mu<0$, a contradiction still arises, making the equation invalid. Hence $B=0$, and in this case, there is no non-trivial solutions.
+
+\textbf{Case2:} $\lambda=0$, in this case we can get a general solution: $X(x)=Ax+B$. Then apply the boundary conditions:
+
+$X'(0)=A=0$, $u_x(L,t)+\kappa u(L,t)=0 \to 0+\kappa BT(t)=0 \to B=0$. In this case, there is no non-trivial solutions.
+
+\textbf{Case3:} Let $\lambda=-\mu^2<0$. Solving $X''(x)+\mu^2 X(x)=0$ we can get a general solution:
+\[
+X(x)=A\sin(\mu x)+B \cos(\mu x), \quad \text{where} \quad X'(x)=A\mu \cos(\mu x)-B\mu \sin(\mu x).
+\]
+Next, we apply the boundary conditions:
+
+$u_x(0,t)=0 \to X'(0)=0 \to A=0$,
+
+$u_x(L,t)+\kappa u(L,t)=0 \to X'(L)+\kappa X(L) =0 \to -B\mu\sin(\mu L)+\kappa B \cos(\mu L)=0 \to tan(\mu L)=\frac{\kappa}{\mu} (\text{If we want B is not equal to 0}) $.
+
+This equation determines the eigenvalues $\mu_n$, which are solutions to: $\tan(\mu_n L)=\frac{\kappa}{\mu_n}$ and $X_n(x)=\cos(\mu_n x)$ where $n=\{1,2,3\cdots\}$.
+
+Since our final solution only depends on the variation of \( \mu^2 \), we focus on the positive values of \( \mu \). By plotting the reciprocal function \( \frac{\kappa}{\mu} \) and the tangent function \( \tan(\mu L) \), we observe that the solutions satisfy $0 < \mu_1 < \mu_2 < \mu_3 < \dots $ meaning all \( \mu_n \) are strictly increasing.
+
+Next, apply the initial condition: $u(x,0)=f(x)$. Since \( \cos(\mu_n x) \) forms an orthogonal set of eigenfunctions, we expand the initial condition \( f(x)=\sum_{n=1}^\infty C_n \cos(\mu_n x) \) as a generalized Fourier series:
+\[
+u(x,t) = \sum_{n=1}^{\infty} C_n e^{-\alpha^2 \mu_n^2 t} \cos(\mu_n x).
+\]
+Next, we want to use some trigonometric identities to prove the orthogonality:
+
+For \( m \neq n \): we use $\frac{1}{2}(\cos(A-B)+\cos(A+B))=\cos A\cos B:$
+\begin{align*}
+&\int_0^L \cos(\mu_n x) \cos(\mu_m x) \,dx = \int_0^L \frac{1}{2} \left[ \cos((\mu_n - \mu_m)x) + \cos((\mu_n + \mu_m)x) \right] dx \\
+&= \frac{1}{2} \left[ \frac{\sin((\mu_n - \mu_m)x)}{\mu_n - \mu_m} + \frac{\sin((\mu_n + \mu_m)x)}{\mu_n + \mu_m} \right] \Bigg|_0^L=\frac{1}{2} \left[ \frac{\sin((\mu_n - \mu_m)L)}{\mu_n - \mu_m} + \frac{\sin((\mu_n + \mu_m)L)}{\mu_n + \mu_m} \right] \Bigg.
+\end{align*}
+
+
+
+Given \( \tan(\mu_n L) = \frac{\kappa}{\mu_n} \), according to properties of trigonometric functions, we assume $\sin(\mu_nL)=\frac{\kappa}{\sqrt{\kappa^2+\mu_n^2}}$ and $\cos(\mu_nL)=\frac{\mu_n}{\sqrt{\kappa^2+\mu_n^2}}$.
+
+Using the trigonometric sum and difference identities: $\sin(A \pm B) = \sin A \cos B \pm \cos A \sin B:$
+\[
+\sin((\mu_n - \mu_m)L) = \sin(\mu_n L) \cos(\mu_m L) - \cos(\mu_n L) \sin(\mu_m L), and
+\]
+\[
+\sin((\mu_n + \mu_m)L) = \sin(\mu_n L) \cos(\mu_m L) + \cos(\mu_n L) \sin(\mu_m L).
+\]
+Thus,
+\[
+\sin((\mu_n - \mu_m)L) = \left( \frac{\kappa}{\sqrt{\kappa^2 + \mu_n^2}} \right) \left( \frac{\mu_m}{\sqrt{\kappa^2 + \mu_m^2}} \right) - \left( \frac{\mu_n}{\sqrt{\kappa^2 + \mu_n^2}} \right) \left( \frac{\kappa}{\sqrt{\kappa^2 + \mu_m^2}} \right), and 
+\]
+\[
+similarly, \sin((\mu_n + \mu_m)L) = \frac{\kappa \mu_m}{\sqrt{(\kappa^2 + \mu_n^2)(\kappa^2 + \mu_m^2)}} + \frac{\kappa \mu_n}{\sqrt{(\kappa^2 + \mu_n^2)(\kappa^2 + \mu_m^2)}}.
+\]
+Hence,
+\begin{align*}
+    &\frac{\sin((\mu_n - \mu_m)L)}{\mu_n - \mu_m} + \frac{\sin((\mu_n + \mu_m)L)}{\mu_n + \mu_m} = \frac{\kappa(\mu_m-\mu_n)}{\sqrt{(\kappa^2+\mu_n^2)(\kappa^2+\mu_m^2)}}/(\mu_n-\mu_m) \\
+    &+ \frac{\kappa(\mu_m+\mu_n)}{\sqrt{(\kappa^2+\mu_n^2)(\kappa^2+\mu_m^2)}}/(\mu_n+\mu_m)=\frac{-\kappa}{\sqrt{(\kappa^2+\mu_n^2)(\kappa^2+\mu_m^2)}} + \frac{\kappa}{\sqrt{(\kappa^2+\mu_n^2)(\kappa^2+\mu_m^2)}}=0.
+\end{align*}
+Since we observe that both sine terms cancel out, leading to the orthogonality condition:
+\[
+\int_0^L \cos(\mu_n x) \cos(\mu_m x) \,dx = 0, \quad \text{for } m \neq n.
+\]
+For \( m = n \), we use $\cos^2 A = \frac{1}{2} (1 + \cos 2A):$
+\begin{align*}
+\int_0^L \cos^2(\mu_n x) \,dx &= \int_0^L \frac{1}{2} \left( 1 + \cos(2\mu_n x) \right) dx \\
+&= \frac{1}{2} \left[ x + \frac{\sin(2\mu_n x)}{2\mu_n} \right] \Bigg|_0^L \\
+&= \frac{1}{2} \left[ L + \frac{\sin(2\mu_n L)}{2\mu_n} - 0 \right].
+\end{align*}
+Since \(\sin(2\mu_n L)\) also vanishes due to the boundary condition, we obtain:
+\[
+\int_0^L \cos^2(\mu_n x) \,dx = \frac{L}{2}.
+\]
+Then we use orthogonality of trigonometric functions:
+
+$\int_0^L f(x)\cos(\mu_m x)dx=\sum_{n=1}^\infty C_n\int_0^L \cos(\mu_nx)\cos(\mu_mx)dx=C_m\cdot\frac{L}{2}$.
+
+The coefficients \( C_n \) are given by:
+\[
+C_n = \frac{2}{L} \int_0^L f(x) \cos(\mu_n x) dx.
+\]
+Final answer: \[
+u(x,t) = \sum_{n=1}^{\infty} [\frac{2}{L}\int_0^L f(x) \cos(\mu_n x) dx] e^{-\alpha^2 \mu_n^2 t} \cos(\mu_n x), \quad \text{where} \quad (\tan\mu_nL=\frac{\kappa}{\mu_n}).
+\]
+
+
+
+
+
+
+
+\item Let \( c, L > 0 \) and let \( f, g : [0,L] \to \mathbb{R} \) be functions of class \( \mathcal{C}^3 \), satisfying the boundary conditions \( f(0) = f(L) = 0 \) and \( g(0) = g(L) = 0 \). We seek to find \( u = u(x,t) \), a solution to the wave equation:
+
+\[
+\begin{cases}
+    u_{tt} = c^2 u_{xx}, & x \in (0,L), \quad t > 0, \\
+    u(0,t) = u(L,t) = 0, & t > 0, \\
+    u(x,0) = f(x), & x \in (0,L), \\
+    u_t(x,0) = g(x), & x \in (0,L).
+\end{cases}
+\]
+
+\begin{enumerate}
+    \item Show that the solution of the problem in the form \( u(x,t) = T(t)X(x) \), ignoring the initial conditions \( u(x,0) = f(x) \) and \( u_t(x,0) = g(x) \), is given by:
+    \[
+        u(x,t) = \sum_{n=1}^{\infty} \left[ a_n \cos \left( \frac{n\pi c}{L} t \right) + b_n \sin \left( \frac{n\pi c}{L} t \right) \right] \sin \left( \frac{n\pi}{L} x \right).
+    \]
+
+\textit{Proof:} Assume $u(x,t) = T(t)X(x).$
+Substituting into the wave equation:
+
+\[
+T''(t) X(x) = c^2 T(t) X''(x).
+\]
+
+Dividing both sides by \( T(t)X(x) \):
+
+\[
+\frac{T''(t)}{c^2 T(t)} = \frac{X''(x)}{X(x)} = \lambda.
+\]
+
+Since the left side depends only on \( t \) and the right side depends only on \( x \), both must be equal to a constant \( \lambda \).
+
+\textbf{Solving the Space Equation firstly:}
+
+The space-dependent equation is:
+\[
+X''(x) = \lambda X(x).
+\]
+In fact, we have already learned in class how to solve this equation. When $\lambda=\mu^2>0$ we will get $X(x)=A\sinh(\mu x)+B \cosh(\mu x)$. When $\lambda =0$ we will get $X(x)=Ax+B$. Both cases lead to trivial solutions due to the boundary conditions $X(0)=0=X(L)$. We will therefore focus on the non-trivial solution of case 3.
+
+\textbf{Case3:} When $\lambda=-\mu^2<0$, then the space equation is $X''(x)+\mu^2X(x)=0$, a general solution is $X(x)=A\sin(\mu x)+B\cos(\mu x)$ and then apply the boundary conditions $X(0)=0=X(L)$ we can know that $B=0$ and $A\sin(\mu L)=0$. For a non-trivital solution ($A\neq0$): $\mu L=n \pi$ where $n=\{1,2,3\cdots\}$
+
+\textbf{Then we consider the Time Equation:}
+
+Since $\lambda=-\mu^2<0$ and  $T''(t) =  \lambda c^2 T(t)=-\mu^2c^2T(t).$
+
+So we can know that $-\mu^2 c^2<0$ and a gengeral solution is $T(t)=C\sin(\mu c t)+D\cos(\mu c t)$.
+
+\textbf{Constructing the General Solution}
+Given $\mu_n$ is eigenvalue and then $u_n(x,t)=X_n(x)T_n(t)=[a_n\cos(\mu_n ct)+b_n\sin(\mu_nct)]\sin(\mu_n x)$ (Here we can unify the constant parameters of $X(x)$ and $T(t)$).
+
+And we know that $\mu_n = \frac{n\pi}{L}$, by superposing all solutions, we obtain:
+
+\[
+u(x,t) = \sum_{n=1}^{\infty} \left[ a_n \cos \left( \frac{n\pi c}{L} t \right) + b_n \sin \left( \frac{n\pi c}{L} t \right) \right] \sin \left( \frac{n\pi}{L} x \right).
+\]
+
+This is the required form of the solution, ignoring the initial conditions.
+
+
+
+
+    \item Determine the constants \( a_n \) and \( b_n \) by applying the initial conditions \( u(x,0) = f(x) \) and \( u_t(x,0) = g(x) \); Deduce the general solution of the problem.
+    
+\textit{Proof:} According to IC:
+
+$u(x,0)=\sum_{n=1}^{\infty} a_n\sin \left( \frac{n\pi}{L} x \right)=f(x)$
+
+$u_t(x,0)=X(x)T'(0)=\sum_{n=1}^{\infty} \left[-\frac{n\pi c}{L} a_n \sin \left( \frac{n\pi c}{L} 0 \right) +\frac{n\pi c}{L} b_n \cos \left( \frac{n\pi c}{L} 0 \right) \right] \sin \left( \frac{n\pi}{L} x \right)=\sum_{n=1}^\infty \frac{n\pi c}{L}b_n \sin(\frac{n\pi}{L} x)=g(x)$.
+
+Then we use the orthogonality of trigonometric function (we already know in class):
+\[\int_0^L \sin(\frac{n\pi x}{L})\sin(\frac{m\pi x}{L})dx=\frac{L}{2} \delta_{mn}.\]
+\[
+\int_0^L f(x) \sin(\frac{m \pi x}{L})dx=\sum_{n=1}^\infty a_n \int_0^L \sin(\frac{n\pi x}{L})\sin(\frac{m\pi x}{L})dx=a_m \frac{L}{2}
+\]
+Thus: $a_n = \frac{2}{L}\int_0^L f(x) \sin(\frac{n\pi x}{L})dx, n=\{1,2,3\cdots\}$
+\[
+\int_0^L g(x) \sin(\frac{m \pi x}{L})dx=\sum_{n=1}^\infty \frac{n\pi c}{L}b_n \int_0^L \sin(\frac{n\pi x}{L})\sin(\frac{m\pi x}{L})dx=\frac{m\pi c}{L}b_m \frac{L}{2}
+\]
+Thus: $b_n = \frac{2}{n \pi c}\int_0^L g(x) \sin(\frac{n\pi x}{L})dx, n=\{1,2,3\cdots\}$
+
+    \item Discuss the special case where \( f = 0 \) and \( g(x) = \sin \left( \frac{\pi}{L} x \right) - \sin \left( \frac{2\pi}{L} x \right) \).
+
+\textit{Proof:}  
+
+When $f(x)=0$, then $a_n=0$ for all  $n\in \mathbb{N}$.
+
+When \( g(x) = \sin \left( \frac{\pi}{L} x \right) - \sin \left( \frac{2\pi}{L} x \right) \), then $b_n = \frac{2}{n \pi c}\int_0^L [\sin \left( \frac{\pi}{L} x \right) - \sin \left( \frac{2\pi}{L} x \right) ] \sin(\frac{n\pi x}{L})dx$, 
+
+Since we know the orthogonality: $\int_0^L \sin(\frac{n\pi x}{L})\sin(\frac{m\pi x}{L})dx=\frac{L}{2} \delta_{mn}$,
+
+there are two non-zero terms: $b_1 = \frac{2}{\pi c} \cdot \frac{L}{2}=\frac{L}{\pi c} $ and $b_2 =- \frac{1}{\pi c} \cdot \frac{L}{2}=-\frac{L}{2\pi c}$.
+
+And at this time $u(x,t)=\frac{L}{\pi c}\sin(\frac{\pi c}{L}t)\sin(\frac{\pi}{L}x)-\frac{L}{2\pi c}\sin(\frac{2\pi c}{L}t)\sin(\frac{2\pi}{L}x)$.
+\end{enumerate}
+
+  
+\end{enumerate}
+
+\end{document}

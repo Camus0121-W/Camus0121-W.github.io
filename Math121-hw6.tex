@@ -1,0 +1,273 @@
+\documentclass[12pt,reqno]{amsart}
+\usepackage{fullpage, amsfonts, euscript, times, graphicx}
+\pagestyle{empty}
+\thispagestyle{empty}
+\parindent=0pt
+\parskip=4pt
+\renewcommand{\labelenumi}{(\alph{enumi})}
+
+%\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+
+\newcommand{\clp}{CLP-1 Differential Calculus}
+\newcommand{\book}[3]{\clp, Section #1, p.~#2, \##3}
+\newcommand{\bbook}[3]{\clp, Section #1, pp.~#2, \##3}
+\newcommand{\continued}{\vfill\hfill{\small (continued on next page)}\newpage}
+
+\newcommand{\duetime}{1:50{\sc pm}}
+\newcommand{\thisyear}{2023}
+% Ignore everything above this point.
+
+% The commands below define new macros \N, \Q, \R, \Z (for blackboard bold letters) and \ep (a shorthand for \varepsilon, a nicer looking epsilon). If you use LaTeX in the future and you want these commands to work the same way, you can copy these lines into the new TeX file.
+\newcommand{\N}{{\mathbb N}}
+\newcommand{\Q}{{\mathbb Q}}
+\newcommand{\R}{{\mathbb R}}
+\newcommand{\Z}{{\mathbb Z}}
+\newcommand{\ep}{\varepsilon}
+
+
+\begin{document}
+
+% There's no need to put your name (Canvas automatically knows who you are). We will be grading Homeworks without seeing students' names, which is a system found to reduce bias in the grading process.
+\centerline{\bf Math 121---Homework \#6}
+\centerline{due
+	Tuesday, April 11, \thisyear
+\ by \duetime}
+
+\medskip
+{\em There is a 15\% late penalty for Homework submitted after the due date and time. (Please take the submission time of \duetime\ seriously, and plan to finish well before then---preferably the night before, really.) Solutions to the Homework will be available online 24 hours after the due date and time, and no late work will be accepted once those 24 hours pass.}
+
+\smallskip
+When writing mathematics, always try to make your writing look like the writing in your favourite mathematics textbook, the one you find clearest and easiest to understand. In particular, write in complete sentences, with words explaining the mathematical things you are doing and putting them into context (more words than math symbols, more likely). You are not just trying to convey to your reader the answer you obtained: you are also trying to persuade your reader that your answer is correct in a way that is easy for them to understand.
+
+
+% Below here is where you will alter the file to include your solutions.
+
+\medskip
+\begin{problem}
+Calculate the Taylor series of the function $f(x) = \frac1{\sqrt2}(\sin x - \cos x)$ centred at $x=\frac\pi4$. What trigonometric identity does the answer reveal?
+\end{problem}
+According to $(sinx)'=cosx$ and $(cosx)'=-sinx$, we discover the law of $f(x)$:\\
+$f(x)=\frac{1}{\sqrt{2}}(\sin x-\cos x)$, $f^{(1)}(x)=\frac{1}{\sqrt{2}}(\cos x+\sin x)$,
+ $f^{(2)}(x)=\frac{1}{\sqrt{2}}(-\sin x+\cos x)$, $f^{(3)}(x)=\frac{1}{\sqrt{2}}(-\cos x-\sin x)$, $f^{(4)}(x)=f(x),f^{(5)}(x)=f^{(1)}\cdots$
+
+So that $f(\frac{\pi}{4})=0$, $f^{(1)}(\frac{\pi}{4})=1$, $f^{(2)}(\frac{\pi}{4})=0$, $f^{(3)}(\frac{\pi}{4})=-1$, $f^{(4)}(\frac{\pi}{4})=f(\frac{\pi}{4})=0\cdots$
+
+which means $f^{(2n)}(\frac{\pi}{4})=0$, $f^{(2n+1)}(\frac{\pi}{4})=(-1)^{n}$, $(n\in Z,n\geq0)$.
+
+So the Taylor series of the function centred at $x=\frac{\pi}{4}$ is:
+\\$f(x)=\frac{1}{\sqrt{2}}(\sin x-\cos x)=\sum\limits_{n=0}^{\infty}\frac{f^{(2n+1)}(\frac{\pi}{4})}{(2n+1)!}(x-\frac{\pi}{4})^{2n+1}= \sum\limits_{n=0}^{\infty}\frac{(-1)^n (x-\frac{\pi}{4})^{2n+1}}{(2n+1)!} $
+
+Since we know from Theorem 3.6.5: 
+\\$\sin x=\sum\limits_{n=0}^{\infty}\frac{(-1)^n x^{2n+1}}{(2n+1)!} $,and $\sin (x-\frac{\pi}{4})=\sum\limits_{n=0}^{\infty}\frac{(-1)^n (x-\frac{\pi}{4})^{2n+1}}{(2n+1)!}=\frac{1}{\sqrt{2}}(\sin x-\cos x)$.
+
+Hence, the answer reveal the trigonometric identity: $\frac{1}{\sqrt{2}}(\sin x-\cos x)=\sin (x-\frac{\pi}{4})$.
+
+\medskip
+\begin{problem}\
+\begin{enumerate}
+\item Using trigonometric identities, show that $\displaystyle4\arctan\frac15 = \frac\pi4 + \arctan\frac1{239}$. (Hint: apply the tangent function to both sides.
+\item Using the Maclaurin series for $\arctan x$ and the identity in part~(a), find a rational number that is within $10^{-10}$ of $\pi$. (You don't have to simplify your answer.)
+\end{enumerate}
+\end{problem}
+
+(a)
+\\Since $\tan(2x)=\frac{2\tan(x)}{1-\tan^2(x)}$,\\
+so $\tan(2\cdot \arctan\frac{1}{5})=\frac{2\cdot \tan (\arctan \frac{1}{5})} {1-\tan^2(\arctan \frac{1}{5})   } =\frac{\frac{2}{5}}{1-\frac{1}{5^2}} =\frac{5}{12}    $,
+
+then $\tan(4\cdot \arctan\frac{1}{5})=\frac{2\cdot \tan (2\arctan \frac{1}{5})} {1-\tan^2(2\arctan \frac{1}{5})   } =\frac{2\cdot \frac{5}{12}}{1-(\frac{5}{12})^2} =\frac{120}{119}    $.
+
+In other ways, $\tan(\frac{\pi}{4}+ \arctan\frac{1}{239})=\frac{\tan \frac{\pi}{4}+ \tan (\arctan \frac{1}{239})} {1-\tan \frac{\pi}{4} \cdot\tan (\arctan \frac{1}{239})   } =\frac{1+ \frac{1}{239}}{1-\frac{1}{239}} =\frac{120}{119}.   $
+
+Hence, $4 \arctan\frac{1}{5}=\frac{\pi}{4}+\arctan \frac{1}{239}$.
+\\(b)
+From(a) we know that:
+$\pi=16\arctan \frac{1}{5} -4\arctan \frac{1}{239} $.
+\\Since the Maclaurin series for $\arctan x$:
+$\arctan x=\sum\limits_{n=0}^\infty \frac{(-1)^{n} x^{2n+1}  }{ 2n+1 }$,\\
+To obtain the rational number expression for $\pi$
+,\\ we intercept the first n terms of $16\arctan \frac{1}{5}$ and $4\arctan \frac{1}{239}$,
+\\so (the error for $16\arctan \frac{1}{5})<16\cdot\frac{(\frac{1}{5})^{2n+3}}{2n+3}$ and \\(the error for $4\arctan \frac{1}{239})<4\cdot\frac{(\frac{1}{239})^{2n+3}}{2n+3}$.
+\\
+Since the error is the absolute value of the difference between the actual value and the estimated value, the absolute value should be scaled up when considering the total error,
+\\so the total error $|R_{(n)}x|< 16\cdot\frac{(\frac{1}{5})^{2n+3}}{2n+3}+4\cdot\frac{(\frac{1}{239})^{2n+3}}{2n+3} <20\cdot \frac{1}{(2n+3)\cdot 5^{2n+3}}$,
+\\ The requirements of the problem in other words let error $|R_{(n)}x|<10^{-10}$.
+\\Hence, we get $n=6$ as small as possible, and $\pi \approx 16\cdot \sum\limits_{n=0}^6 \frac{(-1)^n (\frac{1}{5} )^{2n+1} }{2n+1}-4\cdot \sum\limits_{n=0}^6 \frac{(-1)^n (\frac{1}{239} )^{2n+1} }{2n+1}$.
+
+
+\medskip
+\begin{problem}
+Suppose that the power series $P(x) = \sum_{n=0}^\infty A_n x^n$ converges at $x=x_0$.
+\begin{enumerate}
+\item Prove that there is a constant $M$ such that $|A_n x_0^n| \le M$ for all $n\ge0$.
+\item Prove that $P(x)$ converges at $x=x_1$ whenever $|x_1| < |x_0|$.
+\item If $P(x)$ diverges at $x=x_2$, prove that $P(x)$ diverges at $x=x_3$ whenever $|x_3|>|x_2|$.
+\end{enumerate}
+(Note: parts~(b) and~(c) are the results needed to show that every power series has a well-defined interval of convergence with the expected centre, even when the Ratio Test is inconclusive.)
+\end{problem}
+(a)
+\\Since $\sum\limits_{n=0}^{\infty}A_{n}x^{n}$ converges at $x=x_0$,
+\\so that $0 =\lim\limits_{N\rightarrow\infty}\sum\limits_{n=0}^{N}A_{n}x_{0}^{n}-\lim\limits_{N\rightarrow\infty}\sum\limits_{n=0}^{N-1}A_{n}x_{0}^{n}=\lim\limits_{N\rightarrow\infty}(\sum\limits_{n=0}^{N}A_{n}x_{0}^{n}-\sum\limits_{n=0}^{N-1}A_{n}x_{0}^{n})=\lim\limits_{N\rightarrow\infty}A_{N}x_{0}^{N}.$\\
+Then by the Definition of limit at infinity, we know that
+\\for every  $\varepsilon>0$, there exists $N_1\in\R$ such that if $n>N_1$, then $|A_nx_0^n|<\varepsilon$.\\
+Then for $\varepsilon=1, \exists N_{1}$, let $n>N_1$, then $|A_{n}x_{0}^{n}|<1$.\\
+let $M=\max\{1,|A_{0}x_{0}^{0}|,|A_{1}x_{0}^{1}|,\cdots,|A_{N_{1}}x_{0}^{N_{1}}|\}$, so for all $n\geq 0$ we have $|A_{0}x_{0}^{n}|\leq M$.
+\\(b)
+\\Since for all $n\geq 0$ we have $|A_{0}x_{0}^{n}|\leq M$,
+\\then $|A_{n}x_{1}^{n}|=|A_{n}x_{0}^{n}(\frac{x_{1}}{x_{0}})^{n}|\leq |M\cdot (\frac{x_{1}}{x_{0}})^{n}|$.
+\\Since $|\frac{x_1}{x_0}|<1$, by the Ratio Test $\displaystyle\lim_{n\to\infty}|\frac{(\frac{x_1}{x_0})^{n+1}}{(\frac{x_1}{x_0})^n}|=|\frac{x_1}{x_0}|<1$ so that $\sum\limits_{n=0}^{\infty}M\cdot (\frac{x_{1}}{x_{0}})^{n}$ converges.  
+\\Compared to the above series, by the Comparison Test, so $\sum\limits_{n=0}^{\infty}|A_{n}x_{1}^{n}|$ converges, which means $\sum\limits_{n=0}^{\infty}A_{n}x_{1}^{n}$ absolutely converges.
+\\Hence $\sum\limits_{n=0}^{\infty}A_{n}x_{1}^{n}$ converges, which means $ P(x)$ converges at $x=x_{1}$.\\
+(c)\\ Assume that $P(x)$ converges at $x=x_3$, and when $|x_2|<|x_3|$,
+\\according to part(b) we know that $P(x)$ must converges at $x=x_2$,
+\\which is contradictory to the problem set.
+\\Hence, If $P(x)$ diverges at $x=x_2$, $P(x)$ must diverges at $x=x_3$ whenever $|x_3|>|x_2|$.
+
+\medskip
+\begin{problem}
+Consider a power series $P(x) = \sum_{n=0}^\infty A_n (x-c)^n$. You are not told the value of~$c$, but you are told that $P(x)$ converges at $x=8$ and $x=9$, and that $P(x)$ diverges at $x=0$ and $x=121$.
+\begin{enumerate}
+\item What is the maximum number of integers that $P(x)$ can converge at? Give an example of such a power series to show that your maximum can be attained.
+\item What is the minimum number of integers that $P(x)$ can converge at? Give an example of such a power series to show that your minimum can be attained.
+\end{enumerate}
+\end{problem}
+(a)
+ \\The maximum number of integers that $P(x)$ can converge at is $120$.
+ \\For example, let $c=60.5$, $A_{n}=\frac{1}{60^{n}}$,
+ \\so $\lim\limits_{n\to\infty}|\frac{ A_{n+1} (x-c)^{n+1}}{ A_n (x-c)^n}|=\lim\limits_{n\rightarrow\infty}|\frac{\frac{1}{60^{n+1}}(x-60.5)^{n+1}}{\frac{1}{60^{n}}(x-60.5)^{n}}|=|\frac{x-60.5}{60}|$, 
+ \\when $|\frac{x-60.5}{60}|<1$, we know that $P(x)$ converges by the Ratio test.
+ \\when $|\frac{x-60.5}{60}|>1$ or equal to $\infty$, we know that $P(x)$ diverges by the Ratio test.
+ \\ So that $P(x)$ converges at $(c-60,c+60)=(0.5,120.5)$, diverges at $(-\infty,0.5)$ and $(120.5,+\infty)$. Hence, $P(x)$ converges at $x=8,9$, $P(x)$ diverges at $x=0$ and $x=121$ as we desired,\\
+ and it shows that $P(x)$ can converge at most 120 integers.\\
+(b)
+\\The minimum number of integers that $P(x)$ can converge at is $2$.
+\\For example, let $c=8.5$, $A_{n}=\frac{(-1)^n}{n}$,
+\\so $P(x)=\sum_{n=0}^\infty\frac{(-1)^n}{n} (x-8.5)^n$,
+\\so $\lim\limits_{n\to\infty}|\frac{ A_{n+1} (x-c)^{n+1}}{ A_n (x-c)^n}|=\lim\limits_{n\rightarrow\infty}|\frac{\frac{(-1)^{n+1}}{n+1} (x-8.5)^{n+1}}{\frac{(-1)^n}{n} (x-8.5)^n}|=\lim\limits_{n\to\infty}|1-\frac{1}{n+1}|*|x-8.5|=|x-8.5|$.
+\\When $|x-8.5|<1$, we know that $P(x)$ converges by the Ratio test,
+\\when $|x-8.5|>1$ or equal to $\infty$, we know that $P(x)$ diverges by the Ratio test.
+\\Hence, we have concluded that when $x\in (7.5,9.5)$ such that $P(x)$ converges,
+\\when $x\in (-\infty,7.5)U(9.5,\infty)$ such that $P(x)$ diverges.
+\\Hence, $P(x)$ converges at $x=8,9$, $P(x)$ diverges at $x=0$ and $x=121$ as we desired,
+\\and it shows that $P(x)$ can converge at least two integers.
+
+
+
+\medskip
+\begin{problem}
+Let $\{b_n\}$ be a positive sequence such that $\sum_{n=1}^\infty b_n$ converges.
+\begin{enumerate}
+\item Let $f(x)$ be a function that is continuous at $x=0$. Prove that $\sum_{n=1}^\infty b_n f(b_n)$ converges.
+\item Let $g(x)$ be a function that is differentiable at $x=0$ and satisfies $g(0)=0$. Prove that $\sum_{n=1}^\infty g(b_n)$ converges.
+\end{enumerate}
+\end{problem}
+(a)
+\\Since $\{b_n\}$ is a positive sequence and  $\sum_{n=1}^\infty b_n$ converges,
+\\so that $\lim\limits _{n \rightarrow \infty} b_n=0$.
+\\Since $f(x)$ is a function that is continuous at $x=0$,
+\\by the definition of function continuity: $\lim\limits_{x\to 0}f(x)=f(0).$
+\\Hence, we know that $\lim\limits_ {n\to \infty}f(b_n)=f(b_n)$
+\\(b)
+Let $f(x)=\{\begin{array}{l}
+	\frac{g(x)}{x}, x \neq 0  \\
+	g^{\prime}(0), x=0
+   \end{array}$ 
+\\Since $g(x)$ is a function that is differentiable at $x=0$,
+so $\lim\limits _{x \rightarrow 0} \frac{g(x)-g(0)}{x-0}=\lim\limits _{x \rightarrow 0} \frac{g(x)}{x}=g^{\prime}(0)$, \\
+then $\lim\limits _{x \rightarrow 0} f(x)=\lim\limits _{x \rightarrow 0} \frac{g(x)}{x}=g^{\prime}(0)=f(0)$, which means $f(x)$ is continuous at $x=0$. \\
+Hence, $\sum_{n=1}^{\infty} b_n \cdot f(b_n)=\sum_{n=1}^{\infty} b_n \cdot \frac{g(b_n)}{b_n}=\sum_{n=1}^{\infty} g(b_n)$ by part(a),
+\\since we have proved that $\sum_{n=1}^\infty b_n f(b_n)$ converges, so $\sum_{n=1}^\infty g(b_n)$ converges as we desired.
+
+\medskip
+\begin{problem}
+In this problem, $T_j(x)$ denotes the degree-$j$ Maclaurin polynomial for $\cos x$.
+\begin{enumerate}
+\item For any nonnegative integer $m$ and any $t\in[0,1]$, show that $\displaystyle \bigl| \cos t - T_{2m}(t) \bigr| \le \frac{t^{2m+2}}{(2m+2)!}$.
+\item For any positive integer $k$, show that $\displaystyle\lim_{x\to\infty} \frac{\cos(\frac1x) - T_{2k}(\frac1x)}{1/x^{2k+2}} = \frac{(-1)^{k+1}}{(2k+2)!}$.
+\item Let $k$ be a positive integer. For which real numbers $q$ does $\displaystyle\sum_{n=1}^\infty n^q \biggl( \cos \biggl( \frac1n \biggr) - T_{2k} \biggl( \frac1n \biggr) \biggr)$ converge?
+\end{enumerate}
+\end{problem}
+(a)\\For any nonnegative integer $m$ and any $t\in[0,1]$, 
+\\by theorem 3.6.5, we can know that the Maclaurin series for $\cos t$:
+\\$\cos t=\sum_{j=0}^{\infty} \frac{(-1)^j t^{2 j}}{(2 j) !}$,
+\\and the degree-j(2) Maclaurin series for $T_j(x)$:
+\\ $T_{2m}(t)=\sum_{j=0}^{m} \frac{(-1)^j t^{2 j}}{(2 j) !}$.
+\\So $\displaystyle \bigl| \cos t - T_{2m}(t) \bigr|=|\sum_{j=m+1}^{\infty} \frac{(-1)^j t^{2 j}}{(2 j) !}|$,
+\\next by the Triangle inequality, we know that:
+\\$|\sum_{j=m+1}^{\infty} \frac{(-1)^j t^{2 j}}{(2 j) !}|\leq\sum_{j=m+1}^{\infty}| \frac{(-1)^j t^{2 j}}{(2 j) !}|=\sum_{j=m+1}^{\infty}\frac{ t^{2 j}}{(2 j) !}$.
+\\For $\sum_{j=0}^{\infty}\frac{ t^{2 j}}{(2 j) !}$,
+\\by the Ratio Test and  $t\in[0,1]$: $\lim\limits_{j\to\infty}|\frac{\frac{ t^{2 j+2}}{(2 j+2) !}}{\frac{ t^{2 j}}{(2 j) !}}|=\lim\limits_{j\to\infty}|\frac{t^2}{(2j+2)(2j+1)}|\leq\lim\limits_{j\to\infty}|\frac{1}{(2j+2)(2j+1)}|<1$
+
+\\(b)\\
+Since part(a), we know that
+$\left|\cos \frac{1}{x}-T_{2 k+2}(\frac{1}{x})\right| \leq \frac{(\frac{1}{x})^{2 k+4}}{(2 k+4) !} $,
+\\which means $\left|\frac{\cos \frac{1}{x}-T_{2 k+2}(\frac{1}{x})}{1 / x^{2 k+2}}\right|\leq \frac{(\frac{1}{x})^2}{(2 k+4) !}.$\\
+Since easily obtain $\lim _{x \rightarrow \infty} \frac{(\frac{1}{x})^2}{(2 k+4) !}=0$, \\so that $\lim _{x \rightarrow \infty}(\cos \frac{1}{x}-T_{2 k+1}(\frac{1}{x})) /(1 / x^{2 k+2})=0$.\\
+Then $\lim _{x \rightarrow \infty} \frac{\cos \frac{1}{x}-T_{2 k}(\frac{1}{x})}{1 / x^{2 k+2}}=\lim _{x \rightarrow \infty} \frac{\left[\cos \frac{1}{x}-T_{2 k+2}(\frac{1}{x})\right]+\left[T_{2 k+2}(\frac{1}{x})-T_{2 k}(\frac{1}{x})\right]}{1 / x^{2 k+2}}, \\
+=\lim _{x \rightarrow \infty} \frac{\cos \frac{1}{x}-T_{2 k+2}(\frac{1}{x})}{1 / x^{2 k+2}}+\lim _{x \rightarrow \infty} \frac{T_{2 k+2}(\frac{1}{x})-T_{2 k}(\frac{1}{x})}{1 / x^{2 k+2}}=0+\lim _{x \rightarrow \infty} \frac{\frac{(-1)^{k+1} \cdot(\frac{1}{x})^{2 k+1}}{(2 k+2) !}}{1 / x^{2 k+2}}=\frac{(-1)^{k+1}}{(2 k+2) !}$ as we desired.
+
+\\(c)
+\\When $q<2k+1$ the series converge, prove as follows: \\
+$\text{\textcircled{1}}$ 
+\\Since $\cos (\frac{1}{n})=T_{2 k}(\frac{1}{n})+(-1)^{k+1} \cdot \frac{\cos \frac{\theta}{n}}{(2 k+2) !} \cdot(\frac{1}{n})^{2 k}$,$(0<\theta<1$,lagrange remainder)
+\\ so the sign of $ \cos \frac{1}{n}-T_{2 k}(\frac{1}{n})$ is
+  determined by $k$ and is independent of $n$,
+  \\so each term of the
+  primitive series is either constant positive or constant
+  negative.\\
+	Hence, series converges if and only if it absolutely converges.\\
+	$\text{\textcircled{2}}$
+ Assume $ a_n=\operatorname{n}^q(\cos \frac{1}{n}-T_{2 k}(\frac{1}{n} )) $, $ b_n=\frac{1}{n^{2 k+2-q}}$,\\ then $\lim _{n \rightarrow \infty} \frac{|a_n|}{b_n}=\lim _{n \rightarrow \infty} \frac{\mid \cos \frac{1}{n}-T_{2 k}(\frac{1}{n})\mid}{1 / n^{2 k+2}}=\frac{1}{(2 k+2) !}
+ $,\\
+ when $n$ is sufficiently large, $0<\frac{b_n / 2}{(2 k+2) !}<a_n<\frac{2 b_n}{(2 k+2) !}$, by the comparison test, the $\sum_{n=1}^\infty a_n$ and $\sum_{n=1}^\infty b_n$ have the same convergence.\\
+	$\text{\textcircled{3}}$ 
+ \\For $ b_n=\frac{1}{n^{2 k+2-q}}$,
+ by the $p$-test we know that only when $2k+2-q>1 \to q<2 k+1$
+that $\sum_{n=1}^\infty b_n$ converges,
+\\and when   $\sum_{n=1}^\infty b_n$ converges such that $\sum_{n=1}^\infty a_n$ is also converges, 
+\\which means $\displaystyle\sum_{n=1}^\infty n^q \biggl( \cos \biggl( \frac1n \biggr) - T_{2k} \biggl( \frac1n \biggr) \biggr)$ converge as we desired.
+ 
+\medskip
+\begin{problem}
+Calculate the values of each of the following series, simplifying as much as possible. Be sure to justify why they converge or why any formulas you use are valid.
+\begin{enumerate}
+\item $\displaystyle\sum_{n=1}^\infty \frac{4^{n-3/2}}{5^n}$
+\item $\displaystyle\sum_{n=0}^\infty (-1)^n \frac{(\pi/3)^{2n}}{(2n)!}$
+\item $\displaystyle\sum_{n=0}^\infty (-1)^n \frac{(\pi/6)^{2n+1}}{(2n+1)!}$
+\item $\displaystyle\sum_{n=0}^\infty \frac{(-\log 2)^n}{n!}$
+\item $\displaystyle\sum_{n=1}^\infty -\frac{(1-\sqrt e)^n}n$
+\end{enumerate}
+\end{problem}
+(a)\\
+$\displaystyle\sum_{n=1}^{\infty} \frac{4^{n-\frac{3}{2}}}{5^n}=4^{-\frac{3}{2}} \cdot \sum_{n=1}^{\infty}(\frac{4}{5})^n=4^{-\frac{3}{2}} \cdot \lim _{N \rightarrow \infty} \sum_{n=1}^N(\frac{4}{5})^n.$
+\\Then by the Geometric sum we know that:\\
+$\displaystyle4^{-\frac{3}{2}} \cdot \lim _{N \rightarrow \infty} \sum_{n=1}^N(\frac{4}{5})^n=4^{-\frac{3}{2}} \cdot \lim _{N \rightarrow \infty} \frac{\frac{4}{5} \cdot\left[1-(\frac{4}{5})^N\right]}{1-\frac{4}{5}}= 4^{-\frac{3}{2}} \cdot \frac{\frac{4}{5}}{\frac{1}{5}}=\frac{1}{2}$.\\
+(b)
+\\By theorem 3.6.5, we can know that the Maclaurin series for $\cos x$:
+\\$\cos x=\sum_{n=0}^{\infty}(-1)^n \frac{x^{2 n}}{(2 n) !}$.
+Then take $x=\frac{\pi}{3}$ into the series:
+\\$\sum_{n=0}^{\infty}(-1)^n \frac{x^{2 n}}{(2 n) !}=\sum_{n=0}^{\infty}(-1)^n \frac{\frac{\pi}{3}^{2 n}}{(2 n) !}=\cos\frac{\pi}{3}=\frac{1}{2}$ as we desired.
+\\Assume $a_n=\frac{(-1)^nx^{2n}}{(2 n) !}$, then by the Ratio test:\\
+$\lim _{n \rightarrow \infty}\left|\frac{a_{n+1}}{a_n}\right|=\lim _{n \rightarrow \infty} \frac{x^2(2 n) !}{(2 n+2) !}=\lim _{n \rightarrow \infty} \frac{x^2}{(2 n+2)((n+1)}=0<1$ as $x=\frac{\pi}{3}$, \\Hence the series converges.
+
+\\(c) 
+\\By theorem 3.6.5, we can know that the Maclaurin series for $\sin x$:
+\\$\sin x=\sum_{n=0}^{\infty}(-1)^n \frac{x^{2 n+1}}{(2 n+1) !}$.
+Then take $x=\frac{\pi}{6}$ into the series:
+\\$\sum_{n=0}^{\infty}(-1)^n \frac{x^{2 n+1}}{(2 n+1) !}=\sum_{n=0}^{\infty}(-1)^n \frac{\frac{\pi}{6}^{2 n+1}}{(2 n+1) !}=\sin\frac{\pi}{6}=\frac{1}{2}$ as we desired.
+\\Assume $ a_n=\frac{(-1)^nx^{2n+1}}{(2 n+1) !} $, then by the Ratio test:
+\\$ \lim\limits _{n \rightarrow \infty}\frac{|a_{n+1}|}{|a_n|}=\lim\limits _{n \rightarrow \infty} \frac{x^2}{(2 n+1)(2 n)}=0<1 $ as $x=\frac{\pi}{6}$,
+\\Hence the series converges.
+\\(d)
+\\By theorem 3.6.5, we can know that the Maclaurin series for $ e^x$:\\$e^x=\sum\limits_{n=0}^{\infty}\frac{x^n}{n!}$,
+\\Assume $ a_n=\frac{x^n}{n !} $, 
+\\then by Ratio test:$ \lim\limits _{n \rightarrow \infty}\frac{|a_{n+1}|}{|a_n|}=\lim\limits _{n \rightarrow \infty} \frac{x}{n+1}=0 <1 $ as $x=-log2$,\\ so the series converges, hence,$\sum\limits_{n=0}^{\infty} \frac{(-\log 2)^{n}}{n !}=e^ {-log 2}=\frac{1}{2}$.
+\\(e)
+\\By theorem 3.6.5, we can know that the Maclaurin series for $ log(1+x)$:\\
+$log(1+x)=\sum\limits_{n=0}^{\infty}\frac{(-1)^{n} x^{n+1} }{n+1}$,
+\\ so that $log(1-x)=\sum\limits_{n=0}^{\infty}\frac{(-1)^{n} (-x)^{n+1} }{n+1}=\sum\limits_{n=1}^{\infty}-\frac{ x^{n} }{n}$.
+\\Hence, $\sum\limits_{n=1}^{\infty} -\frac{(1-\sqrt{e})^n}{n}=\ln (1+\sqrt{e}-1)=\frac{1}{2}$.
+\\Assume $ a_n=\sum\limits_{n=1}^{\infty}-\frac{ x^{n} }{n}$, then by the Ratio test:
+\\$ \lim\limits _{n \rightarrow \infty}\frac{|a_{n+1}|}{|a_n|}=\lim\limits _{n \rightarrow \infty} (1-\frac{1}{n+1})x=x<1 $ as $x=1-\sqrt{e}$,
+\\Hence the series converges.
+\end{document}

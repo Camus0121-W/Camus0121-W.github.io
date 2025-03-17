@@ -1,0 +1,341 @@
+\documentclass[hidelinks]{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,amsbsy,amstext}
+\usepackage[dvips]{graphicx}
+\newcommand{\half}{\textstyle\frac{1}{2}}
+
+\oddsidemargin 3mm
+\evensidemargin 3mm
+\topmargin -15mm
+\textheight 670pt
+\textwidth 450pt
+
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{mathrsfs}
+
+\newcommand{\R}{\mathbb R}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\N}{\mathbb N}
+\newcommand{\C}{\mathbb{C}}
+
+\begin{document}
+
+\pagestyle{empty}
+
+
+\noindent
+{\bf\large Math 321   Assignment~6}
+\hfill February 28, 2025
+\hfill {Dr.\ G.\ Slade}
+
+\medskip \noindent
+This assignment is {\bf due in Canvas by 09:00 a.m.\ on Friday, March 7}.
+\\
+\emph{Late assignments are not accepted.}
+Up to five points are given for overall quality of presentation.
+
+
+
+\begin{enumerate}
+
+
+\item
+Let $X$ be a metric space with metric $d$.  Let $\alpha >0$.
+A function $f \in {\cal C}(X)$ is called
+\emph{H\"older continuous of exponent $\alpha$} if the quantity
+\[
+    N_\alpha(f) = \sup_{x\neq y}\frac{|f(x)-f(y)|}{d(x,y)^\alpha}
+\]
+is finite.
+\begin{enumerate}
+\item
+Prove that if $X$ is compact then
+$\{f \in {\cal C}(X) : \|f\| \le 1 \; \text{and}\; N_\alpha(f) \le 1\}$ is a compact subset
+of ${\cal C}(X)$.
+\\
+
+\textit{Proof:}
+
+Prove $\mathscr{F} = \{f \in {\cal C}(X) : \|f\| \le 1 \; \text{and}\; N_\alpha(f) \le 1\}$ is a compact subset of ${\cal C}(X)$.
+
+Since each $f\in \mathscr{F}$ satisfies $||f||=\sup_{x\in X} |f(x)|\leq1$, thus $\mathscr{F}$ is definitely pointwise-bounded.
+
+On the other hand, since $N_\alpha(f) = \sup_{x\neq y}\frac{|f(x)-f(y)|}{d(x,y)^\alpha}$, we can know that for any $x\neq y$, $|f(x)-f(y)|\leq N_\alpha(f)d(x,y)^\alpha$.
+
+Since $N_\alpha(f)\leq1$, then for any $\epsilon>0$, there exists $\delta=\epsilon^{\frac{1}{\alpha}}$ such that if $d(x,y)<\delta$ then $|f(x)-f(y)|\leq d(x,y)^\alpha<\epsilon$. Thus, we have proved $\mathscr{F}$ is equicontinuous.
+
+$\mathscr{F}$ met all the conditions of Arzelá-Ascoli Theorem, so any $\{f_n\}$ has a uniformly convergent subsequence in $\mathscr{F}$.
+
+Next, we claim to prove $\mathscr{F}$ is closed then we can say $\mathscr{F}$ is compact.
+ 
+Since \( f_n \) converges to \( f \) uniformly, we have
+\[
+\|f_n - f\| = \sup_{x \in X} |f_n(x) - f(x)|,  \lim_{n \to \infty}||f_n-f||=0.
+\]
+Because each \( f_n \) satisfies \( \|f_n\| \leq 1 \), we obtain
+\[
+\|f\| = \sup_{x \in X} |f(x)| = \lim_{n \to \infty} \sup_{x \in X} |f_n(x)| \leq 1.
+\]
+Thus, \( f \) still satisfies \( \|f\| \leq 1 \).
+
+By the definition of Hölder continuity, each \( f_n \) satisfies
+\[
+|f_n(x) - f_n(y)| \leq d(x,y)^\alpha.
+\]
+Taking the limit, we obtain
+\[
+|f(x) - f(y)| = \lim_{n \to \infty} |f_n(x) - f_n(y)| \leq d(x,y)^\alpha.
+\]
+Thus, 
+\[
+N_\alpha(f) = \sup_{x \neq y} \frac{|f(x) - f(y)|}{d(x,y)^\alpha} \leq 1.
+\]
+We have proved that $\mathscr{F}$ is compact subset of $\mathcal{C}(X)$.
+\item
+Prove that $\{f \in {\cal C}([0,1]) : \|f\| \le 1 \}$ is \emph{not} a compact subset of
+${\cal C}([0,1])$.
+\\
+
+\textit{Proof:}
+Consider a counterexample: $f_n(x)=\cos(nx)$, then it is continuous, and satisfy $|f_n(x)|\leq1$. But it not equicontinuous, for example $x=0$ and $y=\frac{\pi}{2n}$, then $|\cos(nx)-\cos(ny)|=|\cos(0)-\cos(\frac{\pi}{2})|=1$.
+\end{enumerate}
+
+\item
+Suppose that $f: \R\to \R$ can be uniformly approximated by polynomials.
+Prove that $f$ must be a polynomial.
+\\
+
+\textit{Proof:}
+
+Given \( f(x) \) can be uniformly approximated by a sequence of polynomials, suppose  there exists a sequence of polynomials $\{f_n(x)\}$:
+
+\[
+f_n(x) = a_k^{(n)} x^k + a_{k-1}^{(n)} x^{k-1} + \dots + a_1^{(n)} x + a_0^{(n)},
+\]
+
+and we know that $\| f_n - f \|_{\infty} \to 0,  \text{as } n \to \infty$.
+
+Then for any $\epsilon>0$, there exists some $N \in \mathbb{N}$ such that any $m,n\geq N$ satisfy 
+\[
+\| f_n - f_m \|_{\infty} = \sup_{x \in \mathbb{R}} | f_n(x) - f_m(x) |<\epsilon
+\]
+by Cauchy criterion for uniform convergence.
+
+$|f_n(x)-f_m(x)|=|(a_k^{(n)}-a_k^{(m)}) x^k + (a_{k-1}^{(n)}-a_k^{(m)}) x^{k-1} + \dots + (a_1^{(n)}-a_1^{(m)}) x + a_0^{(n)}-a_0^{(m)}|<\epsilon$.
+
+Notice here, since the inequality valid for any $x\in \mathbb{R}$, we can see that for any $j=0,1,2...$, all terms with $x^{j}$ must be cancel out in order to satisfy the inequality, which means $|a_j^{(n)}-a_k^{(m)}|<\epsilon$. Each $\{a_j^{(n)}\}$ is Cauchy sequence.
+
+Since $f_n(x) $ converges to $ f(x)$ uniformly, and each $f_n(x)$ is a polynomial of the form $\sum_{k=0}^\infty a_k^{(n)} x^j$, it follows that for every $x \in \mathbb{R}$, we have
+\[
+f(x) = \lim_{n \to \infty} f_n(x) = \sum_{j=0}^{\infty} a_j x^j.
+\]
+But we still need to show that this series terminates at a finite degree. That is, only finitely many $a_j$ are nonzero.
+
+Since $f_n(x)$ is a sequence of polynomials, we note that eventually, all $f_n(x)$ have the same highest degree. Let $K$ be the highest power that appears in the approximating sequence for large enough $n$. That is, for all $n > N$, we have
+\[
+f_n(x) = a_K^{(n)} x^K + a_{K-1}^{(n)} x^{K-1} + \dots + a_1^{(n)} x + a_0^{(n)}.
+\]
+According to previous argument, we must have
+\[
+a_{K+1} = a_{K+2} = \dots = 0.
+\]
+Thus, the power series for $f(x)$ actually terminates at $j = K$, giving us
+\[
+f(x) = a_0 + a_1 x + a_2 x^2 + \dots + a_K x^K.
+\]
+Hence, we have proved $f$ must be a polynomial.
+
+
+
+
+
+\item
+Let $\alpha$ and $\beta$ be monotone non-decreasing continuous real-valued functions on $[0,1]$,
+with $\alpha(0)=\beta(0) =0$.
+Suppose that, for all $n =0,1,2,3,\ldots$,
+\[
+    \int_0^1 e^{-nx} d\alpha(x)
+    =
+    \int_0^1 e^{-nx} d\beta(x).
+\]
+\begin{enumerate}
+\item
+Prove that if $f:[0,1]\to \mathbb{R}$ is continuous then $\int_0^1 f(x) d\alpha(x)
+= \int_0^1 f(x) d\beta(x)$.
+\\
+
+\textit{Proof:} 
+
+Suppose $f$ is continuous function on $[0,1]$, by Weierstrass’ Theorem, there exists a sequence of polynomials $\{p_j(x)\}$ such that $P_j$ converges uniformly to $f$ on $[0,1]$.
+
+Given a continuous function $g(e^{-x})=f(x)$, which is defined on $[e^{-1},1]$. We can also use a sequence of polynomials $\{g_j(t)\}$ converges uniformly to $g(t)$ on $[e^{-1},1]$ by Weierstrass's theorem.
+
+For $x\in [0,1]$, we have $\sup_{x\in[0,1]}|g_j(e^{-x})-g_j(e^{-x})|=\sup_{t\in[e^{-1},1]}|g_j(t)-g_j(t)|$. Thus, $g_j(e^{-x})$ converges uniformly to $g(e^{-x})$.
+
+According to for all $n=0,1,2,3...$
+\[
+    \int_0^1 e^{-nx} d\alpha(x)
+    =
+    \int_0^1 e^{-nx} d\beta(x).
+\]
+Since we know $g_j(e^{-x})=a_k^{(j)}e^{-kx}+a_{k-1}^{(j)}e^{-(k-1)x}+...+a_0^{(j)}$ is linear combination polynomial.
+
+Thus for all $j=1,2,3...$
+\[
+    \int_0^1 g_j(e^{-x}) d\alpha(x)
+    =
+    \int_0^1 g_j(e^{-x}) d\beta(x).
+\]
+Then we know the fact by theorem 7.16:
+\[
+\lim_{j\to\infty}\int_0^1 g_j(e^{-x}) d\alpha(x)
+    =\int_0^1 g(e^{-x}) d\alpha(x)=
+    \lim_{j\to\infty}\int_0^1 g_j(e^{-x}) d\beta(x)=\int_0^1 g(e^{-x}) d\beta(x).
+\]
+Replace $g(e^{-x})$ with $f(x)$, we have proved that $\int_0^1 f(x) d\alpha(x)
+= \int_0^1 f(x) d\beta(x)$.
+\item
+Does it follow that $\alpha(x)=\beta(x)$ for all $x \in [0,1]$?  Prove it or give a
+counterexample.
+\\
+
+\textit{Proof:}
+
+When $n=0$, $\int_0^1 e^{-0x} d\alpha(x)=\alpha(1)-\alpha(0)=\int_0^1 e^{-0x} d\beta(x)=\beta(1)-\beta(0).$
+
+Since $\alpha(0)=\beta(0)=0$, thus $\alpha(1)=\beta(1)$.
+
+For every fixed $x\in [0,1]$, Suppose
+\[
+f_x(t)  =
+\begin{cases}
+1, & 0 \leq t \leq x, \\
+0, & t > x.
+\end{cases}
+\]
+Then, its integral satisfies
+\[
+\int_0^1 f_x(t) d\alpha(t) = \alpha(x), \quad \int_0^1 f_x(t) d\beta(t) = \beta(x).
+\]
+However, since \( f_x(t) \) is not continuous, we cannot directly apply the results of part(a). 
+
+Next, we define a sequence of continuous functions \( f_n(t) \) approximating \( f_x(t) \):
+\[
+f_n(t) =
+\begin{cases}
+1, & 0 \leq t \leq x, \\
+n(x+\frac{1}{n}-t), & x  < t < x+\frac{1}{n} \\
+0, & t \geq x+\frac{1}{n}.
+\end{cases}
+\]
+This function has the following properties:
+\begin{enumerate}
+    \item $\lim_{n\to\infty}f_n(t)=f_x(t)$
+    \item $f_n(t)$ is continuous on $[0,1]$, satisfies the results of part(a) for all $n=1,2,3...$
+\end{enumerate}
+
+Hence, we apply the results of part(a) for all $n=1,2,3...$:
+\[
+\int_0^1 f_n(t) d\alpha(t) = \int_0^1 f_n(t) d\beta(t).
+\]
+So when n goes to infinite, we obtain:
+\[
+\int_0^1 f_x(t) d\alpha(t) = \int_0^1 f_x(t) d\beta(t).
+\]
+Thus, we conclude
+\[
+\alpha(x) = \beta(x) \quad \forall x \in [0,1]
+\]
+
+\end{enumerate}
+
+\item
+Let ${\cal A}$ be an algebra of continuous real-valued functions on a compact metric space $K$.
+Suppose that ${\cal A}$ separates the points of $K$.  Prove that the closure
+$\overline{\cal A}$ of ${\cal A}$
+consists of either: (i) all continuous functions $f:K\to \mathbb{R}$, or
+(ii) all continuous functions $f$ on $K$ such that $f(p)=0$
+for some fixed $p \in K$.
+\\
+Hint: in the second case it is useful to consider ${\cal A} + \mathbb{R}
+= \{f+c : f \in {\cal A},\, c \in \mathbb{R}\}$.
+\\
+
+\textit{Proof:} 
+
+
+
+Since \(\mathcal{A}\) is an algebra and separates points, we consider two cases:
+
+Case1: If $\mathcal{A}$ vanishes at no points of $K$, then by the Stone-Weierstrass theorem, we have  
+\[
+\overline{\mathcal{A}} = \mathcal{C}(K).
+\]  
+
+Case2: If $\mathcal{A}$ vanishes at some points of $K$, suppose these fixed point $p \in K$ such that every function $f \in \mathcal{A}$ satisfies $f(p) = 0$. That is, $\mathcal{A}$ consists of functions that vanish at $p$. We claim to show that $\overline{\mathcal{A}}$ consists of all continuous functions $f\in K$ such that $f(p)=0$.
+
+Consider the set ${\cal A} + \mathbb{R}
+= \{f+c : f \in {\cal A},\, c \in \mathbb{R}\}$. 
+
+This set contains all functions in $\mathcal{A}$ shifted by a constant. If $\mathcal{A}$ separates points, then for any distinct $x, y \in K$, there exists a function $g \in \mathcal{A}$ such that $g(x) \neq g(y)$. Given that $\mathcal{A}$ vanishes at $p$, the functions in $\mathcal{A} + \mathbb{R}$ separate points and also include a nonzero constant function.
+
+Thus, $\mathcal{A} + \mathbb{R}$ satisfies the conditions of the Stone-Weierstrass theorem, $\overline{\mathcal{A}+\mathbb{R}}=\mathcal{C}(K)$.
+
+Since $\mathcal{A}$ consists of functions that vanish at $p$, its closure $\overline{\mathcal{A}}$ must consist precisely of those functions in $\mathcal{C}(K)$ that still vanish at $p$. Thus, $\overline{\mathcal{A}}=\{f\in \mathcal{C}(K)| f(p)=0\}$.
+
+Hence, the closure
+$\overline{\cal A}$ of ${\cal A}$
+consists of either: (i) all continuous functions $f:K\to \mathbb{R}$, or
+(ii) all continuous functions $f$ on $K$ such that $f(p)=0$
+for some fixed $p \in K$.
+
+
+
+\item
+Let $K = \{ z \in \mathbb{C} : |z|=1\}$ and let
+\[
+    {\cal A} = \left\{
+    f : K \to \mathbb{C} \mid f(e^{i\theta}) = \sum_{n=0}^N c_n  e^{in\theta}
+    \text{  for some $N=0,1,2,\ldots$ and some $c_0,\ldots,c_N \in \mathbb{C}$}
+    \right\}.
+\]
+Convince yourself (do not hand in this part) that ${\cal A}$ is an algebra that
+separates points and vanishes at no point in $K$.
+\\
+Prove that there are continuous functions on $K$ which are not in the uniform closure
+of ${\cal A}$.
+\\
+Hint: prove that $\int_0^{2\pi} f(e^{i\theta}) e^{i\theta} d\theta = 0$ for all $f$ in
+the uniform closure of ${\cal A}$.
+\\
+
+\textit{Proof:} 
+
+According to the definition of $f(x)$, $\int_0^{2\pi} f(e^{i\theta}) e^{i\theta} d\theta = \int_0^{2\pi} \sum_{n=0}^N c_n e^{in\theta} e^{i\theta} d\theta =\int_0^{2\pi} \sum_{n=0}^N c_n  e^{i(n+1)\theta} d\theta $. 
+
+Since $e^x=\cos x+i\sin x$, then $\int_0^{2\pi} f(e^{i\theta}) e^{i\theta} d\theta = \int_0^{2\pi} \Bigg[(\cos \theta +i\sin \theta)+(\cos 2\theta +i\sin 2\theta)+...+\cos N\theta +i\sin N\theta\bigg] d\theta$. 
+
+Since this is a finite linear integral sum, and $\int_0^{2\pi} \cos xdx=\int_0^{2\pi} \sin xdx=0$.
+
+Thus $\int_0^{2\pi} f(e^{i\theta}) e^{i\theta} d\theta = 0$ for all $f$ in
+the uniform closure of ${\cal A}$.
+
+Next, we consider a continuous function $f_1(z)=\frac{1}{z}$ on K, which is only meaningless for $z=0$.
+Assume $f_1(z)$ in the uniform closure of ${\cal A}$, which means $f_1(e^{i\theta})=e^{-i\theta}$ and $\int_0^{2\pi} f_1(e^{i\theta})e^{i\theta}d\theta=\int_0^{2\pi} 1d\theta=2\pi\neq0$, Contradicts the previous statement.
+
+Hence, there are continuous functions on $K$ which are not in the uniform closure
+of ${\cal A}$.
+
+
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+\end{document}
